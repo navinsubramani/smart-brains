@@ -1,0 +1,17 @@
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+  .rotate {
+    transition: all 2s;
+    transform: rotate(359deg);
+  }
+
+  .rotate:hover {
+    animation: rotation 2s infinite linear;
+  }

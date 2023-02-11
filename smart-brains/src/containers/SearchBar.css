@@ -1,0 +1,73 @@
+.SearchBar {
+    height: 4rem;
+
+    margin: 0.5rem;
+
+    display: flex;
+    align-items: center;
+}
+
+/* Search Text */
+
+.search-text {
+    height: 3rem;
+    width: 100%;
+    
+    border-radius: 8px;
+    border: 0px;
+    padding-left: 0.5rem;
+
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.search-text:focus {
+    outline: 0.5px solid rgb(115,103,240);
+}
+
+
+/* Detect Button */
+.detect-btn {
+    appearance: none;
+    background-color: rgb(115,103,240);
+    border: 1px solid rgb(115,103,240);
+    width: 8rem;
+    height: 3rem;
+  
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  .detect-btn:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .detect-btn:hover {
+    background-color: rgb(157,149,245);
+    border: 1px solid rgb(157,149,245);
+  }
+  
+  .detect-btn:focus {
+    box-shadow: rgb(115,103,240) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .detect-btn:active {
+    background-color: rgb(115,103,240);
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }

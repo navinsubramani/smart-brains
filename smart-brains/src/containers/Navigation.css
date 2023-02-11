@@ -1,0 +1,90 @@
+.bar {
+    display: grid;
+
+    grid-template-columns: 6rem auto 10rem;
+    
+    justify-items: center;
+    align-items: center;
+
+    background-color: rgb(255,255,255);
+    border-radius: 6px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+    margin: 0.5rem;
+    padding: 0rem;
+}
+
+img {
+    width: 5rem;
+    height: 5rem;
+}
+
+h1 {
+    color: rgb(115,103,240);
+    margin: 0px;
+    cursor: default;
+}
+
+
+@media only screen 
+  and (min-device-width: 50px) 
+  and (max-device-width: 550px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .bar {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+}
+
+
+/* Logout button */
+
+
+/* CSS */
+.button-3 {
+    appearance: none;
+    background-color: rgb(115,103,240);
+    border: 1px solid rgb(115,103,240);
+    width: 8rem;
+    height: 2rem;
+  
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  .button-3:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .button-3:hover {
+    background-color: rgb(157,149,245);
+    border: 1px solid rgb(157,149,245);
+  }
+  
+  .button-3:focus {
+    box-shadow: rgb(115,103,240) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .button-3:active {
+    background-color: rgb(115,103,240);
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
