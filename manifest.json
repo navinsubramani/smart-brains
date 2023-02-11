@@ -1,0 +1,20 @@
+{
+  "short_name": "Smart Brains",
+  "name": "Smart Brains",
+  "icons": [
+    {
+      "src": "smart-brain.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "smart-brain.svg",
+      "type": "image/svg",
+      "sizes": "96x96"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
