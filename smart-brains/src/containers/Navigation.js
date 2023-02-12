@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import './Navigation.css'
 
 import Logo from "../components/Logo";
-import logo_file from './../media/smart-brain.svg'
+import logo_file from './../smart-brain.svg'
 
 class Navigation extends Component {
 
@@ -14,7 +14,7 @@ class Navigation extends Component {
                 <h1>Face Recognition</h1>
                 <button 
                     className="button-3"
-                    onClick={() => this.props.onSignout("signin")}
+                    onClick={() => this.props.onSignout('signin')}
                 >Logout</button>
             </div>
         )

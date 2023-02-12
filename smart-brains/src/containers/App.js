@@ -10,7 +10,6 @@ import SearchBar from "./SearchBar";
 import FaceDetectedImage from "./FaceDetectedImage";
 
 
-
 class Home extends Component {
 
     constructor() {
@@ -18,8 +17,76 @@ class Home extends Component {
         this.state = {
             link: '',
             detectedRegions: [],
-            route: "signin"
+            route: "signin",
+            connMessage: "",
+            userDetails: {
+                userid: "",
+                detect_count: "",
+                overall_detect: "",
+                overall_median: ""
+            }
         }
+
+        //this.BASE_URL = "http://127.0.0.1:5000"
+        this.BASE_URL = "https://navinsubramani.pythonanywhere.com/"
+    }
+
+    componentDidMount() {
+        fetch(this.BASE_URL+'/')
+        .then(response => response.json().status)
+        .then(body => {this.setState({connMessage: ""})})
+        .catch((err) => {
+            console.log(err)
+            this.setState({connMessage: "Note: Failed to connect to server"})})
+    }
+
+    getUserDetails = (userid) => {
+        fetch(this.BASE_URL+'/profile/'+userid)
+        .then(response => response.json())
+        .then(body => {
+            if(body.status === true) {
+                this.setState({
+                    userDetails: {
+                        userid: userid,
+                        detect_count: body.data.detect_count,
+                        overall_detect: body.data.overall_detect,
+                        overall_median: body.data.overall_median
+                        }
+                    })
+                }
+            })
+        .catch(console.log)
+    }
+
+    clearUserDetails = () => {
+        this.setState({
+            userDetails: {
+                userid: "",
+                detect_count: "",
+                overall_detect: "",
+                overall_median: ""
+            }})
+    }
+
+    putUserActivity = () => {
+        fetch(this.BASE_URL+'/detect/'+this.state.userDetails.userid,
+        {
+            method:'put',
+            header: {
+                'Contet-type':'text/json'
+            },
+            body: JSON.stringify({
+                "imageDetect": 1
+            })
+        })
+        .then(response => response.json())
+        .then(response => {
+            if (response.status === true) {
+                this.getUserDetails(this.state.userDetails.userid)
+                console.log(response)
+            }
+        })
+        .catch(console.log)
     }
 
     onValueChangeLink = (events) => {
@@ -42,21 +109,34 @@ class Home extends Component {
         this.setState({
             link: '',
             detectedRegions: [],
-            route: route
+            route: route,
         })
+
+        if (route === 'signin') {
+            this.clearUserDetails()
+        }
     }
 
     render() {
 
         if (this.state.route === "signin") {
             return(
-                <SignIn onRouteChange={this.onRouteChange}/>
+                <SignIn 
+                    onRouteChange={this.onRouteChange} 
+                    connMessage={this.state.connMessage}
+                    baseurl={this.BASE_URL}
+                    onSignIn={this.getUserDetails}
+                />
             )
         }
 
         else if (this.state.route === "register") {
             return(
-                <Register onRouteChange={this.onRouteChange}/>
+                <Register 
+                    onRouteChange={this.onRouteChange} 
+                    connMessage={this.state.connMessage}
+                    baseurl={this.BASE_URL}
+                />
             )
         }
 
@@ -64,8 +144,8 @@ class Home extends Component {
             return (
                 <div className="home-screen">
                     <Navigation onSignout={this.onRouteChange}/>
-                    <UserStats />
-                    <SearchBar onValueChange={this.onValueChangeLink} onButtonClick = {this.onDetectSubmit}/>
+                    <UserStats userdetails={this.state.userDetails}/>
+                    <SearchBar onValueChange={this.onValueChangeLink} onButtonClick = {this.onDetectSubmit} baseurl={this.BASE_URL}/>
                     <FaceDetectedImage link={this.state.link} boundries={this.state.detectedRegions}/>
                     <div className="example-image">
                         <h3>Some Example Image Link</h3>
@@ -140,7 +220,12 @@ class Home extends Component {
         .then(response => response.text())
         .then(result => JSON.parse(result).outputs[0].data.regions)
         .then(regions => regions.map((region) => region.region_info.bounding_box))
-        .then((boundries) => this.setState({detectedRegions: boundries}))
+        .then((boundries) => {
+            this.setState({detectedRegions: boundries})
+        })
+        .then(() =>
+            this.putUserActivity()
+        )
         .catch(error => console.log('error', error));
 
     }

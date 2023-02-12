@@ -23,6 +23,11 @@
     color: white;
 }
 
+/* Connection Message */
+.warning {
+  color: red;
+}
+
 /* CSS */
 .button-3 {
     appearance: none;
