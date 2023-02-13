@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import './Navigation.css'
 
 import Logo from "../components/Logo";
-import logo_file from './../smart-brain.svg'
+import logo_file from 'https://github.com/navinsubramani/smart-brains/blob/main/smart-brains/src/smart-brain.svg'
 
 class Navigation extends Component {
 
