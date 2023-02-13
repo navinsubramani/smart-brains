@@ -3,7 +3,7 @@ import './SignIn.css'
 import 'tachyons'
 
 import Logo from "../components/Logo";
-import logo_file from 'https://github.com/navinsubramani/smart-brains/blob/main/smart-brains/src/smart-brain.svg'
+import logo_file from './../smart-brain.svg'
 
 class Register extends Component {
 
