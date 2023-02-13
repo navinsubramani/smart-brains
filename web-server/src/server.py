@@ -7,7 +7,7 @@ from flask_cors import CORS
 from Database import Database
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3001", "http://localhost:3000"])
+CORS(app, origins=["http://localhost:3001", "http://localhost:3000","https://navinsubramani.github.io"])
 
 def savePickle(pkl_file, db):
     with open(pkl_file, 'wb') as outp:
